@@ -1,4 +1,5 @@
 import streamlit as st
+from modules.sector_discovery import get_sector_data
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -13,6 +14,10 @@ st.subheader("Model Prediksi Prospek Saham Indonesia berbasis NLP & Valuasi Keua
 
 st.divider()
 
-# Tampilan Sederhana
-st.success("Virtual Environment & Streamlit Berhasil Terhubung!")
-st.info("Sistem siap dibangun: Modul 1 (Sector Discovery) & Modul 2 (Stock Picker)")
+# Modul 1: Sector Discovery Engine
+st.header("🔍 Modul 1: Sector Discovery Engine")
+st.write("Analisis tren dan sentimen sektor industri saham di Indonesia saat ini:")
+
+# Panggil data dari modules
+df_sektor = get_sector_data()
+st.dataframe(df_sektor, use_container_width=True)
