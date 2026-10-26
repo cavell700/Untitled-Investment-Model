@@ -1,5 +1,5 @@
 import streamlit as st
-from modules.sector_discovery import get_sector_data
+from modules.sector_discovery import get_sector_data, fetch_financial_news
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -18,6 +18,11 @@ st.divider()
 st.header("🔍 Modul 1: Sector Discovery Engine")
 st.write("Analisis tren dan sentimen sektor industri saham di Indonesia saat ini:")
 
-# Panggil data dari modules
+# Tampilkan Ringkasan Sektor
 df_sektor = get_sector_data()
 st.dataframe(df_sektor, use_container_width=True)
+
+st.subheader("📰 Berita Sentimen Pasar Terbaru")
+with st.spinner("Mengambil berita finansial terbaru..."):
+    df_berita = fetch_financial_news()
+    st.dataframe(df_berita, use_container_width=True)
